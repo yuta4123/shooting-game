@@ -1,0 +1,50 @@
+body {
+    background: #222;
+    color: #fff;
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  #gameCanvas {
+    background: #333;
+    border: 2px solid #444;
+    border-radius: 10px;
+    margin: 20px auto;
+    display: block;
+  }
+  
+  .uploader {
+    margin: 12px 0;
+  }
+  
+  .preview {
+    height: 50px;
+    margin: 0 8px;
+    vertical-align: middle;
+    border-radius: 4px;
+  }
+  
+  #scoreDisplay {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  #mobileControls {
+    margin: 15px 0 0 0;
+  }
+  
+  #mobileControls button {
+    width: 60px;
+    height: 60px;
+    font-size: 2em;
+    border-radius: 50%;
+    border: none;
+    background: #444;
+    color: #fff;
+    margin: 0 10px;
+  }
+  
+  #gameOverScreen, #clearScreen {
+    margin-top: 50px;
+  }
+  
