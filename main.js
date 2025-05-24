@@ -2,7 +2,6 @@
 // 画像管理
 // ==============================
 const images = { player: null, enemy1: null, boss: null, gameOver: null };
-let playerImgLoaded = false, enemy1ImgLoaded = false, bossImgLoaded = false;
 
 // アップロード＆プレビュー共通
 function handleImageUpload(inputId, previewId, key) {
@@ -76,22 +75,46 @@ window.onload = function () {
     if (e.key === " " || e.key === "z") shotPressed = false;
   });
 
-  // モバイル操作
-  document.getElementById('leftBtn').ontouchstart = () => leftPressed = true;
-  document.getElementById('leftBtn').ontouchend = () => leftPressed = false;
-  document.getElementById('rightBtn').ontouchstart = () => rightPressed = true;
-  document.getElementById('rightBtn').ontouchend = () => rightPressed = false;
-  document.getElementById('shotBtn').ontouchstart = () => shotPressed = true;
-  document.getElementById('shotBtn').ontouchend = () => shotPressed = false;
+  // モバイル操作＆PCクリック両対応
+  setupControls();
 
-  // PC仮想ボタン対応（クリック）
-  document.getElementById('leftBtn').onmousedown = () => leftPressed = true;
-  document.getElementById('leftBtn').onmouseup = () => leftPressed = false;
-  document.getElementById('rightBtn').onmousedown = () => rightPressed = true;
-  document.getElementById('rightBtn').onmouseup = () => rightPressed = false;
-  document.getElementById('shotBtn').onmousedown = () => shotPressed = true;
-  document.getElementById('shotBtn').onmouseup = () => shotPressed = false;
+  // 画面リサイズ
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  window.addEventListener('orientationchange', resizeCanvas);
 };
+
+function setupControls() {
+  const leftBtn = document.getElementById('leftBtn');
+  const rightBtn = document.getElementById('rightBtn');
+  const shotBtn = document.getElementById('shotBtn');
+
+  // タッチ
+  leftBtn.addEventListener('touchstart', e => { e.preventDefault(); leftPressed = true; });
+  leftBtn.addEventListener('touchend', e => { e.preventDefault(); leftPressed = false; });
+  rightBtn.addEventListener('touchstart', e => { e.preventDefault(); rightPressed = true; });
+  rightBtn.addEventListener('touchend', e => { e.preventDefault(); rightPressed = false; });
+  shotBtn.addEventListener('touchstart', e => { e.preventDefault(); shotPressed = true; });
+  shotBtn.addEventListener('touchend', e => { e.preventDefault(); shotPressed = false; });
+
+  // PCクリック
+  leftBtn.onmousedown = () => leftPressed = true;
+  leftBtn.onmouseup = () => leftPressed = false;
+  rightBtn.onmousedown = () => rightPressed = true;
+  rightBtn.onmouseup = () => rightPressed = false;
+  shotBtn.onmousedown = () => shotPressed = true;
+  shotBtn.onmouseup = () => shotPressed = false;
+}
+
+function resizeCanvas() {
+  const canvas = document.getElementById('gameCanvas');
+  let ww = window.innerWidth, wh = window.innerHeight;
+  // 画面幅をもとに800:600比率で最大表示
+  let width = Math.min(800, ww * 0.98);
+  let height = width * 0.75;
+  canvas.style.width = width + 'px';
+  canvas.style.height = height + 'px';
+}
 
 function startGame() {
   document.getElementById('titleScreen').style.display = 'none';
