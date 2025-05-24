@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>オリジナルシューティング</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -36,9 +37,9 @@
     <canvas id="gameCanvas" width="800" height="600"></canvas>
     <!-- モバイル用操作ボタン -->
     <div id="mobileControls">
-      <button id="leftBtn">←</button>
-      <button id="shotBtn">●</button>
-      <button id="rightBtn">→</button>
+      <button id="leftBtn" aria-label="左へ">←</button>
+      <button id="shotBtn" aria-label="ショット">●</button>
+      <button id="rightBtn" aria-label="右へ">→</button>
     </div>
   </div>
 
@@ -46,7 +47,7 @@
   <div id="gameOverScreen" style="display:none;">
     <h2>ゲームオーバー</h2>
     <div id="gameOverImg"></div>
-    <div id="gameOverMsg">どんまい</div>
+    <div id="gameOverMsg">ドンマイ</div>
     <button id="retryBtn">RETRY</button>
   </div>
 
